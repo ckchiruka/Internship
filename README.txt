@@ -1,1 +1,1 @@
-This is the work I need to do to get an Intership
+My baby steps in my escapades in computer science and statistics
