@@ -1,1 +1,1 @@
-My baby steps in my escapades in computer science and statistics
+Small Statistics/CS Projects and Notes from classes and etc. 
