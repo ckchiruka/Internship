@@ -1,0 +1,119 @@
+---
+output: word_document
+---
+#### R Notes
+* Objects
+    + 5 basic types of objects: character, numeric, integer, complex, logical
+    +	Vectors can only contain objects of the same class
+    + Lists can contain objects of different classses, but are represented as vectors
+    + Empty vectors can be created with the vector() function
+*	Numbers
+    +	Numbers in R are generally treated as numeric objects
+    +	Special number inf which represents infinity
+    +	The value NaN represents an undefined value or a missing value
+*	Attributes
+    +	R objects can have names, dimnames, class, dimensions, length, etc
+    +	Attributes can be accessed using the attributes() function
+* Vectors
+    + The c() and vector() function can be used to create vectors of objects
+    + When different objects are mixed in a vector, coercion occus so that every element in the vector is of the same class
+    + Explicit coercion can occur using the as.*() functions, ie as.numeric()
+    + Nonsensical coercion results in NAs
+    + Lists are s special type of vector that can contain elements of different classes
+```{r}
+a <- c(0.5, 0.6) ##numeric
+b <- c(TRUE, FALSE) ##logical
+c <- c(T, F) ##logical
+d <- c("a", "b", "c") ##character
+e <- 1:35 ##integer
+f <- c(1+0i, 2+4i) ##complex
+g <- vector ("numeric", length = 10)
+h <- c(1.7, "a") ##character
+i <- c(TRUE, 2) ##numeric
+j <- c("a", TRUE) ##character
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k <- 2:8
+class(k)
+as.numeric(k)
+as.logical(k)
+as.character(k)
+l <- c("a", "b", "c")
+as.numeric(l)
+as.logical(l)
+as.complex(l)
+m <- list(1, "a", TRUE, 1+4i)
+m
+```
+* Matrices
+    + Vectors with a dimension attribute [an integer vector of length 2 (nrow, ncol)] 
+    + Matrices are constructed column-wise starting with the upper left corner and running down the columns
+    + Matrices can also be created from vectors by adding a dimension attribute or by column-binding or row-binding with cbind(), rbind()
+```{r}
+a <- matrix(nrow = 2, ncol = 3)
+a
+dim(a)
+attributes(a)
+b <- matrix(1:6, nrow = 2, ncol = 3)
+b
+c <- 1:10
+c
+dim(c) <- c(2,5)
+c
+d <- 1:3
+e <- 10:12
+cbind(d, e)
+rbind(d, e)
+```
+* Factors
+    + These are used to represent categorical data and can be ordered or unordered
+    + Using factors with labels are better than using integers because factors are self-describing i.e. Male/Female rather than 1/2
+    + Factors are treated specially by modelling functions like lm() and glm()
+    + The order to the levels can be set using the levels argument, this is important since the first level is used as the baseline level
+```{r}
+a <- factor(c("yes", "yes", "no", "yes", "no"))
+a
+table(a)
+unclass(a)
+a <- factor(c("yes", "yes", "no", "yes", "no"), level = c("yes", "no"))
+a
+```
+* Missing Values
+    + These are denoted by NA or NaN and are tested by is.na() or is.nan()
+    + NA values have the normal classes (integer, character, etc)
+    +
+```{r}
+
+```
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
