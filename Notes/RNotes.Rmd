@@ -144,12 +144,17 @@ c
         + stringsAsFactors, should character variables be coded as factors
     + When using read.table R will automatically, skip lines that begin with a #, figure out how many rows there are and what type of variable is in each column
 * Reading Large Tables
-    + 
-    + 
+    + Make a rough calculation of the memory required to store the large dataset
+    + Specifying the colClasses argument can make read.table run much faster
+    + Setting nrows helps with memory usage, even a mild overestimate is ok
+    + Below is often a quick way to figure out the classes of each columnde
 ```{r}
-
+initial <- read.table("datatable.txt", nrows = 100)
+classes <- sapply(initial, class)
+tabALL <- read.table("datatable.txt", colClasses = classes)
 ```
-*   
+    + Calculating Memory Requirements: 1,500,000 Rows X 120 Columns 
+*
     +
 ```{r}
 
