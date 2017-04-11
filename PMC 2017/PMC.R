@@ -1,7 +1,6 @@
 #PMC Competition Curry Dataset
 
 
-curry3 <- read.csv("C:/Users/ckashyap/Downloads/curry3.csv")
 curryfirst = curry3[which(curry3$time > 24),] #scoring towards left hoop
 currysecond = curry3[which(curry3$time < 24),] #scoring towards right hoop
 
@@ -85,7 +84,7 @@ last = 48
 remove = numeric(0)
 for(i in curryshots){
   current = i
-  if(last - current < 0.05)
+  if(last - current < 0.1)
     remove = c(remove, last)
   last = current
 }
@@ -133,8 +132,24 @@ getrid = remove2(index, curry3)
 
 curryshots = curryshots[!curryshots %in% remove]
 curryshots = curryshots[!curryshots %in% getrid]
-currystart = curry3[which((curry3$time %in% curryshots)) + 20 , ]
-currystop = curry3[which((curry3$time %in% curryshots)) - 7 , ]
-finalcurry = data.frame(currystop$time, currystart$time)
+
+
+currystart = numeric(0)
+currystop = numeric(0)
+for(i in curryshots){
+  j = which(curry3$time %in% i)
+  k = which(curry3$time %in% i)
+  while(curry3[j,]$curryball < 1.5){
+    j = j - 1
+  }
+  while(curry3[k,]$curryball < 1.5){
+    k = k + 1
+  }
+  currystart = c(currystart, curry3[j,]$time)
+  currystop = c(currystop, curry3[k,]$time)
+}
+
+
+finalcurry = data.frame(currystart, currystop)
 write.csv(finalcurry, row.names=FALSE)
 
